@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Screepts\Fire.cs" />
     <Compile Include="Assets\Screepts\PlayerController.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>G:/AN3/Game-dev/GameDev/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>

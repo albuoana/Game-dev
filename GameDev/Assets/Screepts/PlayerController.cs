@@ -17,10 +17,12 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded;
     public float groundCheckRadius;
     public LayerMask whatIsGround;
+    private Animator anim;
 
     void Start()
     {
         theRB = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -46,5 +48,17 @@ public class PlayerController : MonoBehaviour
         {
             theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
         }
+         
+        if (theRB.velocity.x<0)
+        {
+            transform.localScale = new Vector3((float)-0.3493125, (float)0.2591, 1);
+        }
+        else if (theRB.velocity.x > 0)
+        {
+            transform.localScale = new Vector3((float)0.3493125, (float)0.2591, 1);
+        }
+
+        anim.SetFloat("Speed", Mathf.Abs(theRB.velocity.x));
+        anim.SetBool("Grounded", isGrounded);
     }
 }
