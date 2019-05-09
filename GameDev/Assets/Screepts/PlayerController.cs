@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public float groundCheckRadius;
     public LayerMask whatIsGround;
     private Animator anim;
+    public GameObject fireObject;
+    public Transform throwPoint;
 
     void Start()
     {
@@ -47,6 +49,16 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(jump) && isGrounded)
         {
             theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
+        }
+
+        if (Input.GetKey(throwBall))
+        {
+            GameObject ballClone = (GameObject)Instantiate(fireObject, throwPoint.position, throwPoint.rotation);
+            if (transform.localScale.x < 0)
+                ballClone.transform.localScale = - ballClone.transform.localScale;
+            if (theRB.velocity.x > 0)
+                ballClone.transform.localScale = ballClone.transform.localScale;
+            anim.SetTrigger("Throw");
         }
          
         if (theRB.velocity.x<0)
